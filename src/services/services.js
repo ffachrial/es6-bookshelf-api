@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { addBookModel, getAllBooksModel } from '../models/books.js';
+import { addBookModel, getAllBooksModel, getBookByIdModel } from '../models/books.js';
 
 export const addBookService = (
   name,
@@ -35,3 +35,5 @@ export const addBookService = (
 };
 
 export const getAllBooksService = () => getAllBooksModel();
+
+export const getBookByIdService = (id) => getBookByIdModel(id);

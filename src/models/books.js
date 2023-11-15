@@ -13,3 +13,13 @@ export const addBookModel = (newBook) => {
 };
 
 export const getAllBooksModel = () => books;
+
+export const getBookByIdModel = (id) => {
+  const book = books.filter((b) => b.id === id)[0];
+
+  if (book !== undefined) {
+    return book;
+  }
+
+  return null;
+};

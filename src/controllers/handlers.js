@@ -1,4 +1,4 @@
-import { addBookService, getAllBooksService } from '../services/services.js';
+import { addBookService, getAllBooksService, getBookByIdService } from '../services/services.js';
 
 export const addBookHandler = (request, h) => {
   const {
@@ -78,4 +78,27 @@ export const getAllBooksHandler = () => {
       books,
     },
   };
+};
+
+export const getBookByIdHandler = (request, h) => {
+  const { id } = request.params;
+
+  const book = getBookByIdService(id);
+
+  if (book) {
+    return {
+      status: 'success',
+      data: {
+        book,
+      },
+    };
+  }
+
+  const response = h.response({
+    status: 'failed',
+    message: 'Book is not found',
+  });
+
+  response.code(404);
+  return response;
 };
