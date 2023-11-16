@@ -15,19 +15,17 @@ export const addBookModel = (newBook) => {
 export const getAllBooksModel = (name, reading, finished) => {
   let Books = books;
 
-  if (name) Books = books.filter((book) => book.name.toLowerCase().includes(name.toLowerCase()));
+  if (name) Books = Books.filter((book) => book.name.toLowerCase().includes(name.toLowerCase()));
 
-  if (reading) Books = books.filter((book) => Number(book.reading) === Number(reading));
+  if (reading) Books = Books.filter((book) => Number(book.reading) === Number(reading));
 
-  if (finished) Books = books.filter((book) => Number(book.finished) === Number(finished));
+  if (finished) Books = Books.filter((book) => Number(book.finished) === Number(finished));
 
-  return [
-    Books.map((book) => ({
-      id: book.id,
-      name: book.name,
-      publisher: book.publisher,
-    })),
-  ];
+  return Books.map((book) => ({
+    id: book.id,
+    name: book.name,
+    publisher: book.publisher,
+  }));
 };
 
 export const getBookByIdModel = (id) => {

@@ -40,9 +40,15 @@ export const addBookService = (
   return addBookModel(newBook);
 };
 
-export const getAllBooksService = (name, reading, finished) => {
-  getAllBooksModel(name, reading, finished);
-};
+export const getAllBooksService = (
+  name,
+  reading,
+  finished,
+) => getAllBooksModel(
+  name,
+  reading,
+  finished,
+);
 
 export const getBookByIdService = (id) => getBookByIdModel(id);
 

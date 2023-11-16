@@ -1,5 +1,6 @@
 import {
   addBookHandler,
+  deleteBookByIdHandler,
   editBookByIdHandler,
   getAllBooksHandler,
   getBookByIdHandler,
@@ -25,5 +26,10 @@ export default [
     method: 'PUT',
     path: '/books/{id}',
     handler: editBookByIdHandler,
+  },
+  {
+    method: 'DELETE',
+    path: '/books/{id}',
+    handler: deleteBookByIdHandler,
   },
 ];
