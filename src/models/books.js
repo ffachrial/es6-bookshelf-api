@@ -12,13 +12,23 @@ export const addBookModel = (newBook) => {
   return null;
 };
 
-export const getAllBooksModel = () => [
-  books.map((book) => ({
-    id: book.id,
-    name: book.name,
-    publisher: book.publisher,
-  })),
-];
+export const getAllBooksModel = (name, reading, finished) => {
+  let Books = books;
+
+  if (name) Books = books.filter((book) => book.name.toLowerCase().includes(name.toLowerCase()));
+
+  if (reading) Books = books.filter((book) => Number(book.reading) === Number(reading));
+
+  if (finished) Books = books.filter((book) => Number(book.finished) === Number(finished));
+
+  return [
+    Books.map((book) => ({
+      id: book.id,
+      name: book.name,
+      publisher: book.publisher,
+    })),
+  ];
+};
 
 export const getBookByIdModel = (id) => {
   const book = books.filter((b) => b.id === id)[0];

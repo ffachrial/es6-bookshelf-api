@@ -75,15 +75,21 @@ export const addBookHandler = (request, h) => {
   return response;
 };
 
-export const getAllBooksHandler = () => {
-  const books = getAllBooksService();
+export const getAllBooksHandler = (request, h) => {
+  const { name, reading, finished } = request.query;
 
-  return {
+  const books = getAllBooksService(name, reading, finished);
+
+  const response = h.response({
     status: 'success',
     data: {
       books,
     },
-  };
+  });
+
+  response.code(200);
+
+  return response;
 };
 
 export const getBookByIdHandler = (request, h) => {
