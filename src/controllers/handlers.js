@@ -1,5 +1,6 @@
 import {
   addBookService,
+  deleteBookByIdService,
   editBookByIdService,
   getAllBooksService,
   getBookByIdService,
@@ -169,6 +170,32 @@ export const editBookByIdHandler = (request, h) => {
   const response = h.response({
     status: 'failed',
     message: 'Failed to update book. Id cannot be found',
+  });
+
+  response.code(404);
+
+  return response;
+};
+
+export const deleteBookByIdHandler = (request, h) => {
+  const { id } = request.params;
+
+  const isDeleted = deleteBookByIdService(id);
+
+  if (isDeleted) {
+    const response = h.response({
+      status: 'success',
+      message: 'Book successfully deleted',
+    });
+
+    response.code(200);
+
+    return response;
+  }
+
+  const response = h.response({
+    status: 'failed',
+    message: 'Failed to delete book. Id cannot be found',
   });
 
   response.code(404);

@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import {
   addBookModel,
+  deleteBookByIdModel,
   editBookByIdModel,
   getAllBooksModel,
   getBookByIdModel,
@@ -69,3 +70,5 @@ export const editBookByIdService = (
     updatedAt,
   );
 };
+
+export const deleteBookByIdService = (id) => deleteBookByIdModel(id);

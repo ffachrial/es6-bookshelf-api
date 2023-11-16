@@ -63,3 +63,15 @@ export const editBookByIdModel = (
 
   return null;
 };
+
+export const deleteBookByIdModel = (id) => {
+  const index = books.findIndex((book) => book.id === id);
+
+  if (index !== -1) {
+    books.splice(index, 1);
+
+    return true;
+  }
+
+  return false;
+};
