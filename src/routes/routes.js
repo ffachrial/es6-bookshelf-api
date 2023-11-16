@@ -1,4 +1,9 @@
-import { addBookHandler, getAllBooksHandler, getBookByIdHandler } from '../controllers/handlers.js';
+import {
+  addBookHandler,
+  editBookByIdHandler,
+  getAllBooksHandler,
+  getBookByIdHandler,
+} from '../controllers/handlers.js';
 
 export default [
   {
@@ -15,5 +20,10 @@ export default [
     method: 'GET',
     path: '/books/{id}',
     handler: getBookByIdHandler,
+  },
+  {
+    method: 'PUT',
+    path: '/books/{id}',
+    handler: editBookByIdHandler,
   },
 ];

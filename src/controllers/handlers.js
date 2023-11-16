@@ -1,4 +1,9 @@
-import { addBookService, getAllBooksService, getBookByIdService } from '../services/services.js';
+import {
+  addBookService,
+  editBookByIdService,
+  getAllBooksService,
+  getBookByIdService,
+} from '../services/services.js';
 
 export const addBookHandler = (request, h) => {
   const {
@@ -100,5 +105,73 @@ export const getBookByIdHandler = (request, h) => {
   });
 
   response.code(404);
+  return response;
+};
+
+export const editBookByIdHandler = (request, h) => {
+  const { id } = request.params;
+  const {
+    name,
+    year,
+    author,
+    summary,
+    publisher,
+    pageCount,
+    readPage,
+    reading,
+  } = request.payload;
+
+  if (name === undefined) {
+    const response = h.response({
+      status: 'failed',
+      message: 'Failed to update book. Please fill name of book',
+    });
+
+    response.code(400);
+
+    return response;
+  }
+
+  if (readPage > pageCount) {
+    const response = h.response({
+      status: 'failed',
+      message: 'Failed to update book. readPage cannot bigger than pageCount',
+    });
+
+    response.code(400);
+
+    return response;
+  }
+
+  const updateBook = editBookByIdService(
+    id,
+    name,
+    year,
+    author,
+    summary,
+    publisher,
+    pageCount,
+    readPage,
+    reading,
+  );
+
+  if (updateBook) {
+    const response = h.response({
+      status: 'success',
+      message: 'Book successfully updated',
+    });
+
+    response.code(200);
+
+    return response;
+  }
+
+  const response = h.response({
+    status: 'failed',
+    message: 'Failed to update book. Id cannot be found',
+  });
+
+  response.code(404);
+
   return response;
 };

@@ -1,5 +1,10 @@
 import { nanoid } from 'nanoid';
-import { addBookModel, getAllBooksModel, getBookByIdModel } from '../models/books.js';
+import {
+  addBookModel,
+  editBookByIdModel,
+  getAllBooksModel,
+  getBookByIdModel,
+} from '../models/books.js';
 
 export const addBookService = (
   name,
@@ -37,3 +42,30 @@ export const addBookService = (
 export const getAllBooksService = () => getAllBooksModel();
 
 export const getBookByIdService = (id) => getBookByIdModel(id);
+
+export const editBookByIdService = (
+  id,
+  name,
+  year,
+  author,
+  summary,
+  publisher,
+  pageCount,
+  readPage,
+  reading,
+) => {
+  const updatedAt = new Date().toISOString();
+
+  return editBookByIdModel(
+    id,
+    name,
+    year,
+    author,
+    summary,
+    publisher,
+    pageCount,
+    readPage,
+    reading,
+    updatedAt,
+  );
+};
