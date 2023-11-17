@@ -63,6 +63,7 @@ export const editBookByIdService = (
   readPage,
   reading,
 ) => {
+  const finished = pageCount === readPage;
   const updatedAt = new Date().toISOString();
 
   return editBookByIdModel(
@@ -74,6 +75,7 @@ export const editBookByIdService = (
     publisher,
     pageCount,
     readPage,
+    finished,
     reading,
     updatedAt,
   );

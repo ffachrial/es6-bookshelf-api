@@ -47,6 +47,7 @@ export const editBookByIdModel = (
   publisher,
   pageCount,
   readPage,
+  finished,
   reading,
   updatedAt,
 ) => {
@@ -62,6 +63,7 @@ export const editBookByIdModel = (
       publisher,
       pageCount,
       readPage,
+      finished,
       reading,
       updatedAt,
     };
